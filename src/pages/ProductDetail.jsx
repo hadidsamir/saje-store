@@ -7,13 +7,25 @@ import { Check, ShoppingBag, Truck, RotateCcw, Shield } from 'lucide-react'
 
 function ProductDetail() {
   const { id } = useParams()
-  const product = getProductById(id)
+  const navigate = useNavigate()
   const addItem = useCartStore(state => state.addItem)
-  
+  const [product, setProduct] = useState(null)
   const [selectedSize, setSelectedSize] = useState('')
   const [selectedColor, setSelectedColor] = useState('')
   const [showSuccess, setShowSuccess] = useState(false)
   const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    const foundProduct = getProductById(id)
+    if (foundProduct) {
+      setProduct(foundProduct)
+      setSelectedColor(foundProduct.colors[0])
+      setSelectedSize(foundProduct.sizes[0] || 'Talla Única')
+      setCurrentImage(0)
+    } else {
+      navigate('/shop')
+    }
+  }, [id, navigate])
 
   if (!product) {
     return (
@@ -153,11 +165,11 @@ function ProductDetail() {
             </Link>
 
             <div className="mt-12 space-y-4 border-t border-outline/20 pt-8">
-              <div className="flex items-start gap-4">
-                <Truck className="text-primary flex-shrink-0" size={24} />
+              <div className="flex gap-4 items-start">
+                <Truck className="text-primary mt-1" size={24} />
                 <div>
-                  <p className="font-body font-semibold mb-1">Envío Gratis</p>
-                  <p className="text-on-surface-variant text-sm">En pedidos superiores a $150</p>
+                  <h4 className="font-headline font-semibold text-on-surface">Envío Gratis</h4>
+                  <p className="font-body text-sm text-on-surface-variant">En pedidos superiores a $100.000 COP</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">

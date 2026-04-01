@@ -6,7 +6,7 @@ export const products = [
     price: 38000,
     category: "bodys",
     colors: ["Negro", "Blanco"],
-    sizes: ["XS", "S", "M", "L"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Elena_.jpg",
       "/Body Elena_(1).jpg"
@@ -21,7 +21,7 @@ export const products = [
     price: 38000,
     category: "bodys",
     colors: ["Blanco", "Negro"],
-    sizes: ["S", "M", "L"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Sofía_.jpg",
       "/Body Sofía_(1).jpg"
@@ -36,7 +36,7 @@ export const products = [
     price: 38000,
     category: "bodys",
     colors: ["Negro", "Beige"],
-    sizes: ["XS", "S", "M", "L"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Atrevida_.jpg",
       "/Body Atrevida_(1).jpg"
@@ -51,7 +51,7 @@ export const products = [
     price: 33000,
     category: "bodys",
     colors: ["Blanco", "Negro"],
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Suprema_.jpg",
       "/Body Suprema_(1).jpg"
@@ -66,7 +66,7 @@ export const products = [
     price: 33000,
     category: "bodys",
     colors: ["Negro"],
-    sizes: ["XS", "S", "M"],
+    sizes: ["Talla Única"],
     images: [
       "/body Luna_.jpg",
       "/body Luna_(1).jpg"
@@ -81,7 +81,7 @@ export const products = [
     price: 33000,
     category: "bodys",
     colors: ["Blanco", "Negro"],
-    sizes: ["S", "M", "L"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Lia_.jpg",
       "/Body Lia_(1).jpg"
@@ -96,7 +96,7 @@ export const products = [
     price: 33000,
     category: "bodys",
     colors: ["Negro", "Vino"],
-    sizes: ["XS", "S", "M", "L"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Eva_.jpg",
       "/Body Eva_(1).jpg"
@@ -111,7 +111,7 @@ export const products = [
     price: 33000,
     category: "bodys",
     colors: ["Blanco", "Negro"],
-    sizes: ["S", "M", "L"],
+    sizes: ["Talla Única"],
     images: [
       "/Body Suprema_.jpg",
       "/Body Suprema_(1).jpg"

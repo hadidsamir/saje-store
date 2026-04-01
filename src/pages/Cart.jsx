@@ -108,7 +108,7 @@ function Cart() {
                 <div className="flex justify-between font-body">
                   <span className="text-on-surface-variant">Envío</span>
                   <span className="font-semibold">
-                    Calculado en el pago
+                    {total >= 100000 ? 'GRATIS' : 'Calculado en el pago'}
                   </span>
                 </div>
               </div>
@@ -135,6 +135,14 @@ function Cart() {
               >
                 Vaciar Carrito
               </button>
+
+              {total > 0 && total < 100000 && (
+                <div className="mt-6 p-4 bg-primary-light rounded text-center">
+                  <p className="text-xs font-body text-primary-dark font-semibold">
+                    Agrega ${(100000 - total).toLocaleString('es-CO')} más para obtener envío gratis
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
