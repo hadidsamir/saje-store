@@ -32,12 +32,6 @@ function Home() {
             >
               Ver Nuevos Productos
             </Link>
-            <Link 
-              to="/shop"
-              className="backdrop-blur-md bg-surface/10 border border-surface/20 text-surface px-10 py-5 rounded-md text-sm font-semibold tracking-widest uppercase hover:bg-surface hover:text-primary transition-all duration-300 text-center"
-            >
-              Ver Lookbook
-            </Link>
           </div>
         </div>
         
