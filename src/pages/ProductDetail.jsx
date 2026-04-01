@@ -19,8 +19,8 @@ function ProductDetail() {
     const foundProduct = getProductById(id)
     if (foundProduct) {
       setProduct(foundProduct)
-      setSelectedColor(foundProduct.colors[0])
-      setSelectedSize(foundProduct.sizes[0] || 'Talla Única')
+      setSelectedColor(foundProduct.colors && foundProduct.colors.length > 0 ? foundProduct.colors[0] : '')
+      setSelectedSize(foundProduct.sizes && foundProduct.sizes.length > 0 ? foundProduct.sizes[0] : 'Talla Única')
       setCurrentImage(0)
     } else {
       navigate('/shop')
@@ -30,8 +30,7 @@ function ProductDetail() {
   if (!product) {
     return (
       <div className="pt-32 pb-20 px-10 text-center">
-        <h1 className="text-4xl font-headline mb-4">Producto no encontrado</h1>
-        <Link to="/shop" className="text-secondary underline">Volver a la tienda</Link>
+        <h1 className="text-4xl font-headline mb-4">Cargando producto...</h1>
       </div>
     )
   }
@@ -99,47 +98,51 @@ function ProductDetail() {
             </div>
 
             <div className="space-y-6 mb-8">
-              <div>
-                <p className="font-body text-sm font-bold tracking-widest uppercase mb-4">
-                  Selecciona Color
-                </p>
-                <div className="flex gap-3 flex-wrap">
-                  {product.colors.map(color => (
-                    <button
-                      key={color}
-                      onClick={() => setSelectedColor(color)}
-                      className={`px-6 py-3 font-body text-sm border-2 rounded transition-all ${
-                        selectedColor === color
-                          ? 'border-primary bg-primary text-on-primary'
-                          : 'border-outline hover:border-primary'
-                      }`}
-                    >
-                      {color}
-                    </button>
-                  ))}
+              {product.colors && product.colors.length > 0 && (
+                <div>
+                  <p className="font-body text-sm font-bold tracking-widest uppercase mb-4">
+                    Selecciona Color
+                  </p>
+                  <div className="flex gap-3 flex-wrap">
+                    {product.colors.map(color => (
+                      <button
+                        key={color}
+                        onClick={() => setSelectedColor(color)}
+                        className={`px-6 py-3 font-body text-sm border-2 rounded transition-all ${
+                          selectedColor === color
+                            ? 'border-primary bg-primary text-on-primary'
+                            : 'border-outline hover:border-primary'
+                        }`}
+                      >
+                        {color}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div>
-                <p className="font-body text-sm font-bold tracking-widest uppercase mb-4">
-                  Selecciona Talla
-                </p>
-                <div className="flex gap-3 flex-wrap">
-                  {product.sizes.map(size => (
-                    <button
-                      key={size}
-                      onClick={() => setSelectedSize(size)}
-                      className={`px-6 py-3 font-body text-sm border-2 rounded transition-all ${
-                        selectedSize === size
-                          ? 'border-primary bg-primary text-on-primary'
-                          : 'border-outline hover:border-primary'
-                      }`}
-                    >
-                      {size}
-                    </button>
-                  ))}
+              {product.sizes && product.sizes.length > 0 && (
+                <div>
+                  <p className="font-body text-sm font-bold tracking-widest uppercase mb-4">
+                    Selecciona Talla
+                  </p>
+                  <div className="flex gap-3 flex-wrap">
+                    {product.sizes.map(size => (
+                      <button
+                        key={size}
+                        onClick={() => setSelectedSize(size)}
+                        className={`px-6 py-3 font-body text-sm border-2 rounded transition-all ${
+                          selectedSize === size
+                            ? 'border-primary bg-primary text-on-primary'
+                            : 'border-outline hover:border-primary'
+                        }`}
+                      >
+                        {size}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
 
             <button

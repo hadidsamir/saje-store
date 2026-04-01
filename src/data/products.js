@@ -1,4 +1,4 @@
-export const products = [
+﻿export const products = [
   {
     id: 1,
     name: "Body Elena",
@@ -122,7 +122,7 @@ export const products = [
 ]
 
 export const getProductsByCategory = (category) => {
-  if (category === 'all') return products
+  if (category === "all") return products
   return products.filter(p => p.category === category)
 }
 
@@ -131,5 +131,5 @@ export const getProductById = (id) => {
 }
 
 export const getFeaturedProducts = () => {
-  return products.filter(product => product.featured)
+  return products.filter(p => p.featured)
 }
