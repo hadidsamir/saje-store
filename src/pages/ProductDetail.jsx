@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams, Link, useNavigate } from 'react-router-dom'
 import { getProductById, products } from '../data/products'
 import useCartStore from '../store/cartStore'
 import ProductCard from '../components/ProductCard'
