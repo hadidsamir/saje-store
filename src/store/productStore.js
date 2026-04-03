@@ -38,13 +38,13 @@ const useProductStore = create((set, get) => ({
               // Extraer ID si es un enlace de Google Drive (ej: https://drive.google.com/file/d/ID/view)
               const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
               if (driveMatch && driveMatch[1]) {
-                const finalUrl = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+                const finalUrl = `https://lh3.googleusercontent.com/d/${driveMatch[1]}`;
                 console.log('Converted Drive URL:', finalUrl);
                 return finalUrl;
               }
               // Si es solo el ID (letras y números sin slash)
               if (url.length > 20 && !url.includes('/') && !url.includes('http')) {
-                const finalUrl = `https://drive.google.com/uc?export=view&id=${url}`;
+                const finalUrl = `https://lh3.googleusercontent.com/d/${url}`;
                 console.log('Converted Drive ID:', finalUrl);
                 return finalUrl;
               }

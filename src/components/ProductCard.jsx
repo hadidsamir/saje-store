@@ -23,7 +23,6 @@ function ProductCard({ product }) {
           alt={product.name}
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           onError={handleImageError}
-          crossOrigin="anonymous"
         />
         {product.images[1] && !img2Error && (
           <img 
@@ -31,7 +30,6 @@ function ProductCard({ product }) {
             alt={`${product.name} alternate view`}
             className="absolute inset-0 w-full h-full object-cover object-top opacity-0 transition-opacity duration-500 group-hover:opacity-100"
             onError={handleImage2Error}
-            crossOrigin="anonymous"
           />
         )}
         {product.new && (
