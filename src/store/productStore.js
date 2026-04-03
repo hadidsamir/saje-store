@@ -22,40 +22,49 @@ const useProductStore = create((set, get) => ({
         header: true, // Usa la primera fila como nombres de propiedades
         skipEmptyLines: true,
         complete: (results) => {
+          console.log('CSV Data received:', results.data);
+          
           const parsedProducts = results.data.map(row => {
             // Manejar campos que pueden venir vacíos o en formatos diferentes
             // Mapeamos los nombres de las columnas en español de la hoja a nuestras propiedades en inglés
             
             // Si la columna es "url imagen" (con espacio)
-            const rawImages = row.images || row['url imagen'] || row['url_imagen'] || '';
+            const rawImages = row['url imagen'] || row.images || row['url_imagen'] || '';
+            
+            console.log('Processing product:', row.nombre || row.name, 'Raw images:', rawImages);
+            
+            const processedImages = rawImages ? rawImages.split(',').map(img => {
+              let url = img.trim();
+              // Extraer ID si es un enlace de Google Drive (ej: https://drive.google.com/file/d/ID/view)
+              const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+              if (driveMatch && driveMatch[1]) {
+                const finalUrl = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+                console.log('Converted Drive URL:', finalUrl);
+                return finalUrl;
+              }
+              // Si es solo el ID (letras y números sin slash)
+              if (url.length > 20 && !url.includes('/') && !url.includes('http')) {
+                const finalUrl = `https://drive.google.com/uc?export=view&id=${url}`;
+                console.log('Converted Drive ID:', finalUrl);
+                return finalUrl;
+              }
+              return url;
+            }) : ['/placeholder.jpg'];
             
             return {
               id: row.id || `prod-${Math.random().toString(36).substr(2, 9)}`,
-              name: row.name || row.nombre || 'Producto Sin Nombre',
-              price: parseInt(row.price || row.precio) || 0,
-              description: row.description || row.descripcion || '',
-              // Convertir string de imágenes separadas por coma en array y transformar URLs de Google Drive
-              images: rawImages ? rawImages.split(',').map(img => {
-                let url = img.trim();
-                // Extraer ID si es un enlace de Google Drive (ej: https://drive.google.com/file/d/ID/view)
-                const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
-                if (driveMatch && driveMatch[1]) {
-                  return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
-                }
-                // Si es solo el ID (letras y números sin slash)
-                if (url.length > 20 && !url.includes('/')) {
-                   return `https://drive.google.com/uc?export=view&id=${url}`;
-                }
-                return url;
-              }) : ['/placeholder.jpg'],
-              category: (row.category || row.categoria) ? (row.category || row.categoria).toLowerCase().trim() : 'bodys',
-              // Convertir string separada por comas en array
-              colors: (row.colors || row.color) ? (row.colors || row.color).split(',').map(c => c.trim()) : [],
-              sizes: (row.sizes || row.tamaño || row.tamano) ? (row.sizes || row.tamaño || row.tamano).split(',').map(s => s.trim()) : [],
-              // Convertir texto 'TRUE' o 'true' a booleano
-              new: (row.new || row['en stock'] || row.en_stock) && (row.new || row['en stock'] || row.en_stock).toString().toUpperCase() === 'TRUE'
+              name: row.nombre || row.name || 'Producto Sin Nombre',
+              price: parseInt(row.precio || row.price) || 0,
+              description: row.descripcion || row.description || '',
+              images: processedImages,
+              category: (row.categoria || row.category) ? (row.categoria || row.category).toLowerCase().trim() : 'bodys',
+              colors: (row.color || row.colors) ? (row.color || row.colors).split(',').map(c => c.trim()) : [],
+              sizes: (row.tamaño || row.tamano || row.sizes) ? (row.tamaño || row.tamano || row.sizes).split(',').map(s => s.trim()) : [],
+              new: (row['en stock'] || row.en_stock || row.new) && (row['en stock'] || row.en_stock || row.new).toString().toUpperCase() === 'TRUE'
             }
           })
+          
+          console.log('Final parsed products:', parsedProducts);
           
           set({ 
             products: parsedProducts, 
