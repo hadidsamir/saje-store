@@ -6,6 +6,28 @@ function Cart() {
   const { items, removeItem, updateQuantity, getTotal, clearCart } = useCartStore()
   const total = getTotal()
 
+  const handleCheckout = () => {
+    const whatsappNumber = '573116275089'
+    
+    let message = '¡Hola! Deseo comprar los siguientes productos:\n\n'
+    
+    items.forEach((item, index) => {
+      message += `${index + 1}. ${item.name}\n`
+      message += `   Color: ${item.color}\n`
+      message += `   Talla: ${item.size}\n`
+      message += `   Cantidad: ${item.quantity}\n`
+      message += `   Precio: $${item.price.toLocaleString('es-CO')}\n\n`
+    })
+    
+    message += `Total: $${total.toLocaleString('es-CO')}\n\n`
+    message += 'Me regalas los datos para pagar y los datos de envío por favor.'
+    
+    const encodedMessage = encodeURIComponent(message)
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`
+    
+    window.open(whatsappUrl, '_blank')
+  }
+
   if (items.length === 0) {
     return (
       <main className="pt-32 pb-20 px-10 min-h-screen">
@@ -118,7 +140,10 @@ function Cart() {
                 <span>${total.toLocaleString('es-CO')}</span>
               </div>
 
-              <button className="w-full bg-primary text-on-primary px-10 py-5 rounded-md text-sm font-semibold tracking-widest uppercase hover:scale-95 duration-200 ease-in-out mb-4">
+              <button 
+                onClick={handleCheckout}
+                className="w-full bg-primary text-on-primary px-10 py-5 rounded-md text-sm font-semibold tracking-widest uppercase hover:scale-95 duration-200 ease-in-out mb-4"
+              >
                 Proceder al Pago
               </button>
 
