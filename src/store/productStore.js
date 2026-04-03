@@ -29,8 +29,16 @@ const useProductStore = create((set, get) => ({
               name: row.name || 'Producto Sin Nombre',
               price: parseInt(row.price) || 0,
               description: row.description || '',
-              // Convertir string de imágenes separadas por coma en array
-              images: row.images ? row.images.split(',').map(img => img.trim()) : ['/placeholder.jpg'],
+              // Convertir string de imágenes separadas por coma en array y transformar URLs de Google Drive
+              images: row.images ? row.images.split(',').map(img => {
+                let url = img.trim();
+                // Extraer ID si es un enlace de Google Drive (ej: https://drive.google.com/file/d/ID/view)
+                const driveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+                if (driveMatch && driveMatch[1]) {
+                  return `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+                }
+                return url;
+              }) : ['/placeholder.jpg'],
               category: row.category ? row.category.toLowerCase().trim() : 'bodys',
               // Convertir string separada por comas en array
               colors: row.colors ? row.colors.split(',').map(c => c.trim()) : [],
