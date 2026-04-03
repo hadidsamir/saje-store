@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { getProductById, products } from '../data/products'
+import useProductStore from '../store/productStore'
 import useCartStore from '../store/cartStore'
 import ProductCard from '../components/ProductCard'
 import { Check, ShoppingBag, Truck, RotateCcw, Shield } from 'lucide-react'
@@ -8,7 +8,12 @@ import { Check, ShoppingBag, Truck, RotateCcw, Shield } from 'lucide-react'
 function ProductDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
+  
+  const getProductById = useProductStore(state => state.getProductById)
+  const products = useProductStore(state => state.products)
+  
   const addItem = useCartStore(state => state.addItem)
+  
   const [product, setProduct] = useState(null)
   const [selectedSize, setSelectedSize] = useState('')
   const [selectedColor, setSelectedColor] = useState('')
@@ -25,7 +30,7 @@ function ProductDetail() {
     } else {
       navigate('/shop')
     }
-  }, [id, navigate])
+  }, [id, navigate, getProductById])
 
   if (!product) {
     return (

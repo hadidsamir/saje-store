@@ -2,7 +2,7 @@ import { Link, useLocation, useSearchParams, useNavigate } from 'react-router-do
 import { Search, ShoppingBag, Menu, X } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 import useCartStore from '../store/cartStore'
-import { products } from '../data/products'
+import useProductStore from '../store/productStore'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -10,8 +10,10 @@ function Navbar() {
   const [showSuggestions, setShowSuggestions] = useState(false)
   const [suggestions, setSuggestions] = useState([])
   const searchRef = useRef(null)
-  
+
   const itemCount = useCartStore(state => state.getItemCount())
+  const products = useProductStore(state => state.products)
+  
   const location = useLocation()
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
@@ -31,12 +33,12 @@ function Navbar() {
   const handleSearchChange = (e) => {
     const query = e.target.value
     setSearchQuery(query)
-    
+
     if (query.trim().length > 0) {
       const q = query.toLowerCase()
       const filtered = products.filter(p => 
         p.name.toLowerCase().includes(q) || 
-        p.colors.some(c => c.toLowerCase().includes(q))
+        (p.colors && p.colors.some(c => c.toLowerCase().includes(q)))
       ).slice(0, 4) // Show max 4 suggestions
       
       setSuggestions(filtered)

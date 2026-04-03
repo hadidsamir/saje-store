@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
-import { products, getProductsByCategory } from '../data/products'
+import useProductStore from '../store/productStore'
 import { SlidersHorizontal } from 'lucide-react'
 
 function Shop() {
   const [searchParams, setSearchParams] = useSearchParams()
   const categoryParam = searchParams.get('category') || 'all'
   const queryParam = searchParams.get('q') || ''
+  
+  const products = useProductStore(state => state.products)
   
   const [filteredProducts, setFilteredProducts] = useState(products)
   const [selectedCategory, setSelectedCategory] = useState(categoryParam)
@@ -28,7 +30,7 @@ function Shop() {
       result = result.filter(p => 
         p.name.toLowerCase().includes(q) || 
         p.description.toLowerCase().includes(q) ||
-        p.colors.some(c => c.toLowerCase().includes(q))
+        (p.colors && p.colors.some(c => c.toLowerCase().includes(q)))
       )
     }
 

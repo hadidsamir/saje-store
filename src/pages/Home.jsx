@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
-import { getFeaturedProducts } from '../data/products'
+import useProductStore from '../store/productStore'
 import { Quote } from 'lucide-react'
 
 function Home() {
+  const getFeaturedProducts = useProductStore(state => state.getFeaturedProducts)
   const featuredProducts = getFeaturedProducts()
 
   return (
