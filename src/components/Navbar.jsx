@@ -74,34 +74,28 @@ function Navbar() {
         <div className="flex items-center gap-8">
           <Link className="flex items-center gap-3" to="/">
             <img src="/logo.png" alt="SAJE Logo" className="h-12 w-12" />
-            <span className="text-2xl font-headline tracking-tighter text-primary font-bold">SAJE</span>
+            <span className="text-2xl font-headline tracking-tighter text-accent font-bold">SAJE</span>
           </Link>
           <div className="hidden md:flex gap-6 items-center">
             <Link 
-              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
-                isActive('/') 
-                  ? 'text-primary after:w-full' 
-                  : 'text-on-surface hover:text-primary after:w-0 hover:after:w-full'
+              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 ${
+                isActive('/') ? 'text-accent after:w-full' : 'text-on-surface hover:text-accent after:w-0 hover:after:w-full'
               }`} 
               to="/"
             >
               Inicio
             </Link>
             <Link 
-              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
-                isActive('/shop', null) 
-                  ? 'text-primary after:w-full' 
-                  : 'text-on-surface hover:text-primary after:w-0 hover:after:w-full'
+              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 ${
+                isActive('/shop', null) ? 'text-accent after:w-full' : 'text-on-surface hover:text-accent after:w-0 hover:after:w-full'
               }`} 
               to="/shop"
             >
               Tienda
             </Link>
             <Link 
-              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
-                isActive('/shop', 'bodys') 
-                  ? 'text-primary after:w-full' 
-                  : 'text-on-surface hover:text-primary after:w-0 hover:after:w-full'
+              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 ${
+                isActive('/shop', 'bodys') ? 'text-accent after:w-full' : 'text-on-surface hover:text-accent after:w-0 hover:after:w-full'
               }`} 
               to="/shop?category=bodys"
             >
@@ -113,7 +107,7 @@ function Navbar() {
         <div className="flex items-center gap-6">
           <div ref={searchRef} className="relative hidden lg:block">
             <form onSubmit={handleSearch} className="flex items-center bg-surface-container-low px-4 py-2 rounded-full">
-              <button type="submit" className="text-on-surface-variant mr-2 hover:text-primary transition-colors">
+              <button type="submit" className="text-on-surface-variant mr-2 hover:text-accent transition-colors">
                 <Search size={16} />
               </button>
               <input 
@@ -163,13 +157,13 @@ function Navbar() {
                         />
                         <div>
                           <p className="font-headline text-sm text-on-surface">{product.name}</p>
-                          <p className="font-body font-bold text-xs text-primary">${product.price.toLocaleString('es-CO')}</p>
+                          <p className="font-body font-bold text-xs text-accent">${product.price.toLocaleString('es-CO')}</p>
                         </div>
                       </Link>
                     ))}
                     <button 
                       onClick={handleSearch}
-                      className="w-full text-center py-3 text-xs font-body tracking-widest uppercase text-primary hover:bg-primary-light transition-colors mt-1"
+                      className="w-full text-center py-3 text-xs font-body tracking-widest uppercase text-accent hover:bg-accent-light transition-colors mt-1"
                     >
                       Ver todos los resultados
                     </button>
@@ -190,17 +184,17 @@ function Navbar() {
             <Link to="/cart" className="relative hover:opacity-80 transition-all duration-300 text-on-surface">
               <ShoppingBag size={20} />
               {itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-on-primary text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-2 -right-2 bg-accent text-on-accent text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {itemCount}
                 </span>
               )}
             </Link>
             
             <button 
-              className="md:hidden text-on-surface hover:text-primary transition-colors"
+              className={`hover:opacity-80 transition-all duration-300 lg:hidden ${isMenuOpen ? 'text-accent' : 'text-on-surface'}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              <Menu size={24} />
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -211,7 +205,7 @@ function Navbar() {
         <div className="md:hidden absolute top-full left-0 w-full bg-surface border-t border-surface-container shadow-lg py-4 px-8">
           <div className="relative">
             <form onSubmit={handleSearch} className="flex items-center bg-surface-container-low px-4 py-3 rounded-full mb-6">
-              <button type="submit" className="text-on-surface-variant mr-2">
+              <button type="submit" className="text-on-surface-variant mr-2 hover:text-accent">
                 <Search size={16} />
               </button>
               <input 
@@ -262,13 +256,13 @@ function Navbar() {
                         />
                         <div>
                           <p className="font-headline text-sm text-on-surface">{product.name}</p>
-                          <p className="font-body font-bold text-xs text-primary">${product.price.toLocaleString('es-CO')}</p>
+                          <p className="font-body font-bold text-xs text-accent">${product.price.toLocaleString('es-CO')}</p>
                         </div>
                       </Link>
                     ))}
                     <button 
                       onClick={handleSearch}
-                      className="w-full text-center py-3 text-xs font-body tracking-widest uppercase text-primary hover:bg-primary-light transition-colors mt-1 border-t border-surface-container-low"
+                      className="w-full text-center py-3 text-xs font-body tracking-widest uppercase text-accent hover:bg-accent-light transition-colors mt-1 border-t border-surface-container-low"
                     >
                       Ver todos los resultados
                     </button>
@@ -284,8 +278,8 @@ function Navbar() {
           
           <div className="flex flex-col gap-4">
             <Link 
-              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative w-fit after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
-                isActive('/') ? 'text-primary after:w-full' : 'text-on-surface hover:text-primary after:w-0 hover:after:w-full'
+              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative w-fit after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 ${
+                isActive('/') ? 'text-accent after:w-full' : 'text-on-surface hover:text-accent after:w-0 hover:after:w-full'
               }`} 
               to="/" 
               onClick={() => setIsMenuOpen(false)}
@@ -293,8 +287,8 @@ function Navbar() {
               Inicio
             </Link>
             <Link 
-              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative w-fit after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
-                isActive('/shop', null) ? 'text-primary after:w-full' : 'text-on-surface hover:text-primary after:w-0 hover:after:w-full'
+              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative w-fit after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 ${
+                isActive('/shop', null) ? 'text-accent after:w-full' : 'text-on-surface hover:text-accent after:w-0 hover:after:w-full'
               }`} 
               to="/shop" 
               onClick={() => setIsMenuOpen(false)}
@@ -302,8 +296,8 @@ function Navbar() {
               Tienda
             </Link>
             <Link 
-              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative w-fit after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 ${
-                isActive('/shop', 'bodys') ? 'text-primary after:w-full' : 'text-on-surface hover:text-primary after:w-0 hover:after:w-full'
+              className={`font-body text-xs tracking-widest uppercase transition-all duration-300 relative w-fit after:content-[''] after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:bg-accent after:transition-all after:duration-300 ${
+                isActive('/shop', 'bodys') ? 'text-accent after:w-full' : 'text-on-surface hover:text-accent after:w-0 hover:after:w-full'
               }`} 
               to="/shop?category=bodys" 
               onClick={() => setIsMenuOpen(false)}

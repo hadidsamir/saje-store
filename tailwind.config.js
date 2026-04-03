@@ -8,11 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        "primary": "#DA819F",
-        "primary-light": "#F2D0D9",
-        "primary-pale": "#F8E8ED",
-        "primary-dark": "#B8668A",
+        "primary": "#2D2D2D",
+        "primary-light": "#F5F5F5",
+        "primary-pale": "#FAFAFA",
+        "primary-dark": "#1A1A1A",
         "on-primary": "#ffffff",
+        "accent": "#DA819F",
+        "accent-light": "#F2D0D9",
+        "accent-pale": "#F8E8ED",
+        "accent-dark": "#B8668A",
         "secondary": "#DA819F",
         "secondary-container": "#F2D0D9",
         "on-secondary-container": "#8B4A63",

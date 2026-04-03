@@ -84,11 +84,11 @@ function ProductDetail() {
 
           <div className="lg:pl-12">
             <div className="mb-8">
-              <span className="text-primary font-body text-xs tracking-widest uppercase mb-4 block">
+              <span className="text-accent font-body text-xs tracking-widest uppercase mb-4 block">
                 Body
               </span>
               <h1 className="text-4xl md:text-5xl font-headline mb-4 text-on-surface">{product.name}</h1>
-              <p className="text-3xl font-body font-bold text-primary">${product.price.toLocaleString('es-CO')}</p>
+              <p className="text-3xl font-body font-bold text-accent">${product.price.toLocaleString('es-CO')}</p>
             </div>
 
             <div className="text-on-surface-variant font-body text-lg leading-relaxed mb-8 space-y-4">
@@ -154,7 +154,7 @@ function ProductDetail() {
             </button>
 
             {showSuccess && (
-              <div className="bg-primary-light text-primary-dark px-6 py-4 rounded-md flex items-center gap-3 mb-4">
+              <div className="bg-accent-light text-accent-dark px-6 py-4 rounded-md flex items-center gap-3 mb-4">
                 <Check size={20} />
                 <span className="font-body text-sm font-semibold">¡Producto agregado al carrito!</span>
               </div>
@@ -169,21 +169,21 @@ function ProductDetail() {
 
             <div className="mt-12 space-y-4 border-t border-outline/20 pt-8">
               <div className="flex gap-4 items-start">
-                <Truck className="text-primary mt-1" size={24} />
+                <Truck className="text-accent mt-1" size={24} />
                 <div>
                   <h4 className="font-headline font-semibold text-on-surface">Envío Gratis</h4>
                   <p className="font-body text-sm text-on-surface-variant">En pedidos superiores a $100.000 COP</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <RotateCcw className="text-primary flex-shrink-0" size={24} />
+                <RotateCcw className="text-accent flex-shrink-0" size={24} />
                 <div>
                   <p className="font-body font-semibold mb-1">Devoluciones Fáciles</p>
                   <p className="text-on-surface-variant text-sm">30 días para devoluciones</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Shield className="text-primary flex-shrink-0" size={24} />
+                <Shield className="text-accent flex-shrink-0" size={24} />
                 <div>
                   <p className="font-body font-semibold mb-1">Calidad Premium</p>
                   <p className="text-on-surface-variant text-sm">Materiales de la más alta calidad</p>

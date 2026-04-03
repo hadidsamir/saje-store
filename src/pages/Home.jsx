@@ -15,7 +15,7 @@ function Home() {
             src="/body Luna_.jpg"
             alt="Hero"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/50 to-transparent"></div>
         </div>
         
         <div className="relative h-full flex flex-col justify-center px-10 md:px-24 max-w-7xl mx-auto">
@@ -34,20 +34,6 @@ function Home() {
             </Link>
           </div>
         </div>
-        
-        <div className="absolute bottom-10 right-10 hidden md:block">
-          <div className="bg-surface-container-lowest/70 backdrop-blur-xl p-6 rounded-xl max-w-xs shadow-2xl">
-            <img 
-              className="w-full h-40 object-cover rounded-lg mb-4" 
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6tKerz0aWc3RHUaCuaF1cnE7W2e67OAETHr_SEf1_Vszj0smmvuknlo9MFD7N19JUrnjaOvrOsUIoloD0MrL_zh3sxleT2hupjes6jC3dI6pnrsjTD7kyJH_GVvDOhL9tCoV6DTOUQUN7sz3ZXNrlBjrgaooHGiaEMW2evlNl2c1-Zs1AZ-HxLyioWaF9Nn8OS42rk-SyKANxyMVM-jtoihU8YDfGrJhElKWE-a8h63Xens8OK9Xi78Ivbm68u16hSEsZuOQARPyX"
-              alt="Detail"
-            />
-            <p className="font-headline text-lg mb-1">Bodys Esculpidos</p>
-            <p className="font-body text-xs text-on-surface-variant leading-relaxed">
-              Comodidad diseñada se encuentra con siluetas de alta moda. Diseñado para el atelier cotidiano.
-            </p>
-          </div>
-        </div>
       </section>
 
       <section className="py-32 px-10 max-w-screen-2xl mx-auto">
@@ -59,15 +45,15 @@ function Home() {
                 src="/Body Eva_(1).jpg"
                 alt="Collection"
               />
-              <div className="absolute -bottom-10 -right-10 bg-primary-light p-12 hidden md:block shadow-lg">
-                <h3 className="font-headline text-4xl text-primary-dark">01</h3>
+              <div className="absolute -bottom-10 -right-10 bg-accent-light p-12 hidden md:block shadow-lg">
+                <h3 className="font-headline text-4xl text-accent-dark">01</h3>
                 <p className="font-body text-xs tracking-widest uppercase mt-2 text-on-surface">Nuevos Bodys</p>
               </div>
             </div>
           </div>
           
           <div className="lg:col-span-7 order-1 lg:order-2 lg:pl-20">
-            <span className="text-primary font-body text-xs tracking-widest uppercase mb-6 block">
+            <span className="text-accent font-body text-xs tracking-widest uppercase mb-6 block">
               Selección Curada
             </span>
             <h2 className="text-5xl md:text-7xl font-headline mb-8 leading-tight text-on-surface">
@@ -86,7 +72,7 @@ function Home() {
                     className="w-full aspect-[3/4] object-cover object-top rounded-sm transition-transform duration-700 group-hover:scale-105"
                   />
                 </Link>
-                <Link to="/shop?category=bodys" className="font-body text-sm tracking-widest uppercase hover:text-primary transition-colors inline-block">Bodys</Link>
+                <Link to="/shop?category=bodys" className="font-body text-sm tracking-widest uppercase hover:text-accent transition-colors inline-block">Bodys</Link>
               </div>
               <div className="space-y-4 group cursor-pointer mt-16">
                 <Link to="/shop?category=bodys" className="block overflow-hidden">
@@ -96,7 +82,7 @@ function Home() {
                     className="w-full aspect-[3/4] object-cover object-top rounded-sm transition-transform duration-700 group-hover:scale-105"
                   />
                 </Link>
-                <Link to="/shop?category=bodys" className="font-body text-sm tracking-widest uppercase hover:text-primary transition-colors inline-block">Nuevos Estilos</Link>
+                <Link to="/shop?category=bodys" className="font-body text-sm tracking-widest uppercase hover:text-accent transition-colors inline-block">Nuevos Estilos</Link>
               </div>
             </div>
           </div>
@@ -107,14 +93,14 @@ function Home() {
         <div className="max-w-7xl mx-auto px-10">
           <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
             <div>
-              <span className="text-primary font-body text-xs tracking-widest uppercase mb-4 block">
+              <span className="text-accent font-body text-xs tracking-widest uppercase mb-4 block">
                 Edición de Temporada
               </span>
               <h2 className="text-5xl font-headline text-on-surface">Los Esenciales</h2>
             </div>
             <Link 
               to="/shop"
-              className="font-body text-xs tracking-widest uppercase border-b-2 border-primary pb-1 hover:text-primary-dark transition-colors text-primary"
+              className="font-body text-xs tracking-widest uppercase border-b-2 border-accent pb-1 hover:text-accent-dark transition-colors text-accent"
             >
               Ver todos los productos
             </Link>
@@ -131,7 +117,7 @@ function Home() {
       <section className="py-40 px-10 bg-surface">
         <div className="max-w-4xl mx-auto text-center">
           <div className="mb-12 flex justify-center">
-            <Quote className="text-primary" size={48} />
+            <Quote className="text-accent" size={48} />
           </div>
           <h2 className="text-4xl md:text-6xl font-headline leading-tight italic mb-12">
             "La calidad y el ajuste de la colección Bodys es incomparable. Es raro encontrar piezas que se sientan como una segunda piel mientras mantienen tal integridad de alta moda."
@@ -151,7 +137,7 @@ function Home() {
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuATq3xupZ7YqfwGmBXlDgXQThsVm5P6W3M9pJpz3y-xHAq04bvCHZw7wsjEF-cZ6P0iq34Y0l13WDKJRBtX1He3fHf7dtziWIAjH2V7d8cjYkzwHWUlyfQbq8wQZ27qkXfjFrT1sv1rJRj6LrBzmScm2VCwMlJlbJLdbFNJ0UUCoVLXJT7MBy4jcBadSM69QRlth88of_o45S-DecxI7Zx7jHIEy3e4cmjXye61dYY_rwJev0dczmCKe0x51vbYcx5yimCI99-Am8x5"
               alt="Atelier"
             />
-            <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+            <div className="absolute inset-0 bg-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
               <span className="text-surface font-body text-xs tracking-widest uppercase">Dentro del Atelier</span>
             </div>
           </div>
